@@ -1,12 +1,12 @@
 <script lang="ts">
+  import Fire from "./fire/Fire.svelte";
 </script>
 
 <style>
   main {
-    text-align: center;
     padding: 1em;
-    max-width: 240px;
     margin: 0 auto;
+    text-align: center;
   }
 
   h1 {
@@ -20,14 +20,9 @@
     min-height: 100vh;
     background: var(--grey);
   }
-
-  @media (min-width: 640px) {
-    main {
-      max-width: none;
-    }
-  }
 </style>
 
 <main>
   <h1>Home Dashboard</h1>
+  <Fire />
 </main>

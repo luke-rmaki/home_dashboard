@@ -1,17 +1,38 @@
-// Docs on event and context https://www.netlify.com/docs/functions/#the-handler-method
+const fetch = require("node-fetch");
+const cheerio = require("cheerio");
+const moment = require("moment");
+
 const handler = async (event) => {
+  const url =
+    "http://cfaonline.cfa.vic.gov.au/mycfa/Show?pageId=CFALocalList&lat=-37.799883&lng=145.226877&sharedType=&address=Ringwood+North&radius=5";
   try {
-    const subject = event.queryStringParameters.name || 'World'
+    const markup = await fetch(url).then((res) => res.text());
+    const $ = cheerio.load(markup);
+    const data = $(
+      '#mainMobile > div:nth-child(2) > div[style*="display: block"]'
+    );
+    const days = [];
+    data.each(function (i, elem) {
+      days.push($(this).text().trim().replace(/\s\s+/g, " "));
+    });
+
+    const timeStamp = moment().format("DD/MM/YY, HH:mm:ss");
+
+    const returnObject = {
+      data: days,
+      timeStamp,
+    };
+
     return {
       statusCode: 200,
-      body: JSON.stringify({ message: `Hello ${subject}` }),
+      body: JSON.stringify(returnObject),
       // // more keys you can return:
       // headers: { "headerName": "headerValue", ... },
       // isBase64Encoded: true,
-    }
+    };
   } catch (error) {
-    return { statusCode: 500, body: error.toString() }
+    return { statusCode: 500, body: error.toString() };
   }
-}
+};
 
-module.exports = { handler }
+module.exports = { handler };

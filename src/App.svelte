@@ -22,6 +22,9 @@
   }
 </style>
 
+<svelte:head>
+  <title>Home Dashboard</title>
+</svelte:head>
 <main>
   <h1>Home Dashboard</h1>
   <Fire />

@@ -20,7 +20,7 @@
   }
 </style>
 
-<div transition:fly={{ y: 200, duration: 500, delay: index * 100 }}>
+<div in:fly={{ y: 200, duration: 500, delay: index * 100 }}>
   <h3>{isToday ? 'Today' : 'Tomorrow'}</h3>
   <p>{data}</p>
 </div>

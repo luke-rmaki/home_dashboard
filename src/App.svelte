@@ -1,5 +1,6 @@
 <script lang="ts">
   import Fire from "./fire/Fire.svelte";
+  import Bin from "./bin/Bin.svelte";
 </script>
 
 <style>
@@ -28,4 +29,5 @@
 <main>
   <h1>Home Dashboard</h1>
   <Fire />
+  <Bin />
 </main>

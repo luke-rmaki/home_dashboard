@@ -1,5 +1,5 @@
 
-const fetchFunction = async (isFire: boolean): Promise<Array<string>> => {
+const fetchFunction = async (isFire: boolean) => {
 
   let today, tomorrow: string;
   let loading: boolean;
@@ -18,9 +18,7 @@ const fetchFunction = async (isFire: boolean): Promise<Array<string>> => {
       return [today, tomorrow]
     } 
 
-    const {binType, date} = data;
-
-    return [binType, date];
+    return data;
   
 }
 

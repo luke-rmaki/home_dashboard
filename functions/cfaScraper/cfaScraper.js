@@ -1,6 +1,5 @@
 const fetch = require("node-fetch");
 const cheerio = require("cheerio");
-const moment = require("moment");
 
 const handler = async (event) => {
   const url =
@@ -16,11 +15,8 @@ const handler = async (event) => {
       days.push($(this).text().trim().replace(/\s\s+/g, " "));
     });
 
-    const timeStamp = moment().format("DD/MM/YY, HH:mm:ss");
-
     const returnObject = {
       data: days,
-      timeStamp,
     };
 
     return {

@@ -44,7 +44,7 @@ const handler = async (event) => {
       if (!Number.isNaN(parseInt(data))) {
         if (
           currentMonthDay >= parseInt(data) &&
-          currentMonthDay <= parseInt(data) + 7
+          currentMonthDay < parseInt(data) + 7
         ) {
           binType = array[index + 3];
         }

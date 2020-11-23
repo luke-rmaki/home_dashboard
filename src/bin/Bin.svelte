@@ -1,12 +1,15 @@
 <script lang="ts">
   import { onMount } from "svelte";
 
+  import Loader from "../global/Loader.svelte";
   import fetchFunction from "../utils/fetchFunction";
 
-  let binType, date;
+  let binType, date: string;
+  let loading: boolean = true;
 
   onMount(async () => {
     ({ binType, date } = await fetchFunction(false));
+    loading = false;
   });
 </script>
 
@@ -22,6 +25,10 @@
 </style>
 
 <div>
-  <h2>Bin Type:</h2>
-  <p>{binType}</p>
+  {#if loading}
+    <Loader />
+  {:else}
+    <h2>Bin Type:</h2>
+    <p>{binType}</p>
+  {/if}
 </div>
